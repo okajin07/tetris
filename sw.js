@@ -1,4 +1,4 @@
-const CACHE_NAME = "totetris-v17-4";
+const CACHE_NAME = "totetris-v17-5";
 const APP_SHELL = ["./", "./index.html", "./manifest.webmanifest"];
 
 self.addEventListener("install", event => {
@@ -37,8 +37,9 @@ self.addEventListener("fetch", event => {
           ) {
             const copy = response.clone();
 
-            caches.open(CACHE_NAME)
-              .then(cache => cache.put(event.request, copy));
+            caches.open(CACHE_NAME).then(cache => {
+              cache.put(event.request, copy);
+            });
           }
 
           return response;
